@@ -1,0 +1,106 @@
+@import "./_boxShadows.pcss";
+@import "./_colors.pcss";
+@import "./_animations.pcss";
+
+$animation-bezier: cubic-bezier(.25,.8,.25,1);
+
+.container {
+  height: 667px;
+  width: 375px;
+  box-shadow: $card5;
+  background-color: $appBackground;
+  border-radius: 1em;
+  padding-top: 4em;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.header {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background-color: $blue;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 4em;
+}
+
+.cards {
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  height: 100%;
+  background-color: $appBackground;
+  position: relative;
+  overflow-y: scroll;
+  transition-duration: 0.4s;
+  transition-property: all;
+  transition-timing-function: $animation-bezier;
+  &.active {
+    transform: translateY(-4em);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    position: absolute;
+  }
+}
+
+.card {
+  border-radius: 4px;
+  background-color: $cardBackground;
+  margin: 12px 6px;
+  opacity: 0;
+  box-shadow: $card1;
+  animation-name: cascade-in;
+  animation-duration: 0.4s;
+  animation-timing-function: $animation-bezier;
+  animation-fill-mode: forwards;
+  transition-duration: 0.4s;
+  transition-property: all;
+  transition-timing-function: $animation-bezier;
+  transform-origin: center center;
+  height: 16.5em;
+  &.active {
+    height: 100%;
+    margin: 0;
+    border-radius: 0;   
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    .image-container {
+      background-position: center center;
+      background-size: 100%;
+    }
+  }
+  .image-container {
+    transition-duration: 0.4s;
+    transition-property: all;
+    transition-timing-function: $animation-bezier;
+    height: 12em;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+  }
+  .card-actions {
+    box-sizing: border-box;
+    padding: 6px;
+  }
+  .card-title {
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0;
+    margin-bottom: 12px;
+  }
+  .button-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .card-text {
+    height: 0;
+    overflow: hidden;
+    margin-top: 6px;
+    &.active {
+      height: auto;
+      overflow: initial;
+    }
+  }
+}
